@@ -100,6 +100,16 @@ https://mp.weixin.qq.com/s/w697uPRCjn6kEzd_7u-aUQ
 
     - GCRoot：
 
+        * Android JVM中GC Roots的大致分类
+
+            **Class** 由System Class Loader/Boot Class Loader 加载的类对象，这些对象不会被回收。需要注意的是其它的Class Loader实例加载的类对象不一定是 GC root，除非这个类对象恰好是其它形式的 GC root；
+            **Thread 线程**，激活状态的线程；
+            **Stack Local** 栈中的对象。每个线程都会分配一个栈，栈中的局部变量或者参数都是GC root，因为它们的引用随时可能被用到；
+            **JNI Local** JNI中的局部变量和参数引用的对象；可能在JNI中定义的，也可能在虚拟机中定义
+            **JNI Global** JNI中的全局变量引用的对象；同上
+            **Monitor Used** 用于保证同步的对象，例如wait()，notify()中使用的对象、锁等。
+            **Held by JVM** JVM持有的对象。JVM为了特殊用途保留的对象，它与JVM的具体实现有关。比如有System Class Loader, 一些Exceptions对象，和一些其它的Class Loader。对于这些类，JVM也没有过多的信息。
+
     https://blog.csdn.net/jie_sil/article/details/90745324
 
 
@@ -267,6 +277,13 @@ ArrayList与LinkedArrayList的区别
 
 ### ContentProvider
 
+### View
+
+- View 的绘制流程
+
+- View 的事件分发机制
+
+-
 ### Application
 
 ### ActionBar
@@ -284,6 +301,7 @@ https://www.cnblogs.com/LangZXG/p/6501839.html
 ### Desktop Widget
 
 ### AndroidManifest
+
 - 四大组件
 - 启动模式
 - 权限
@@ -293,6 +311,7 @@ https://www.cnblogs.com/LangZXG/p/6501839.html
 ## UI
 
 ### Layout
+
 - FrameLayout
 - LinearLayout
 - TableLayout
@@ -317,6 +336,13 @@ dispatchTouchEvent->onInterceptTouchEvent(false:向子View分发 true:return)->o
 - UNSPECIFIED、AT_MOST、EXACTLY
 
 - 自定义属性
+
+### RecyclerView
+
+- ListView 与 RecyclerView 的差异
+
+- RecyclerView 里面用到的设计模式
+RecyclerView中涉及的设计模式：https://blog.csdn.net/smileiam/article/details/104756706
 
 ### Handler
 
